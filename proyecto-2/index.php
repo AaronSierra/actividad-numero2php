@@ -1,3 +1,9 @@
+<?php
+if (isset($_GET['hour'] ))  {
+    $hour=$_GET['hour'];
+    $second=$hour*3600;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,15 +25,15 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="">Ingresar Horas:</label>
-                                    <input type="number" class="form-control" name="number">
+                                    <input type="number" class="form-control" name="hour" value=<?= $hour ?>>
                                 </div>
-                                <button class="btn btn-primary pull-right">Enviar</button>
+                                <button type="submit" value="calcular" class="btn btn-primary pull-right">Enviar</button>
                             </div>
                       </div>
                   </form>
 
                   <div class="alert alert-success">
-                         <p>Segundos: "0"</p>
+                         <p>Segundos: "<?= $second ?>"</p>
                   </div>
                   <p class="text-center"><a href="../index.php">Ir al inicio</a></p>
               </div>

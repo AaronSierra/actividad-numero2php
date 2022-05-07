@@ -1,3 +1,12 @@
+<?php
+if (isset($_GET['date1'],$_GET['date2']))  {
+    $date1=$_GET['date1'];
+    $date2=$_GET['date2'];
+    $date1=date_create($date1);
+    $date2=date_create($date2);
+    $days= date_diff($date1,$date2);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,19 +28,19 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="">Fecha desde:</label>
-                                    <input type="date" class="form-control" name="fecha-1">
+                                    <input type="date" class="form-control" name="date1" value=<?= $date1 != '' ? $date1->format('Y-m-d') : '' ?>>
                                 </div>
                                 <div class="form-group">
                                     <label for="">Fecha hasta:</label>
-                                    <input type="date" class="form-control" name="fecha-2">
+                                    <input type="date" class="form-control" name="date2" value=<?= $date2 != '' ? $date2->format('Y-m-d') : '' ?>>
                                 </div>
-                                <button class="btn btn-primary pull-right">Enviar</button>
+                                <button type="submit" value="calcular" class="btn btn-primary pull-right">Enviar</button>
                             </div>
                       </div>
                   </form>
 
                   <div class="alert alert-success">
-                         <p>Los dias de diferencia son: "0"</p>
+                         <p>Los dias de diferencia son: "<?= $days != '' ? $days->format('%a') : '' ?>"</p>
                   </div>
                   <p class="text-center"><a href="../index.php">Ir al inicio</a></p>
               </div>
@@ -41,3 +50,4 @@
       </div>
 </body>
 </html>
+

@@ -1,3 +1,13 @@
+<?php 
+if (isset($_GET['dateBirthDate'])) {
+    $dateBirthDate=$_GET['dateBirthDate'];
+    $dayActual=date_create($dayActual);
+    $dateBirthDate=date_create($dateBirthDate);
+    $years = date_diff($dayActual,$dateBirthDate);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,16 +29,16 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="">Fecha nacimiento:</label>
-                                    <input type="date" class="form-control" name="fecha">
+                                    <input type="date" class="form-control" name="dateBirthDate" value=<?= $dateBirthDate != '' ? $dateBirthDate->format('Y-m-d') : '' ?> required >
                                 </div>
                             
-                                <button class="btn btn-primary pull-right">Enviar</button>
+                                <button type="submit" value="calcular" class="btn btn-primary pull-right">Enviar</button>
                             </div>
                       </div>
                   </form>
 
                   <div class="alert alert-success">
-                         <p>Tu tienes "0" Años</p>
+                         <p>Tu tienes "<?= $years != '' ? $years->format('%y') : '' ?>" Años</p>
                   </div>
                   <p class="text-center"><a href="../index.php">Ir al inicio</a></p>
               </div>
@@ -38,3 +48,4 @@
       </div>
 </body>
 </html>
+
